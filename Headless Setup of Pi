@@ -1,0 +1,19 @@
+We decided to use our Mac laptops to access the Raspberry Pi Zero via SSH. Additionally, we agreed on using Wifi instead of an Ethernet cable.
+
+Setting up Wifi + SSH -
+  1. An empty ssh file was created in the boot partition of our microSD card
+  2. At the end of 'wpa_supplicant.conf' we added:
+  
+    network={
+      ssid=“Saransh’s iPhone”
+      psk=“sk123456”
+    }
+    
+    network={
+      ssid=“SkHome"
+      psk=“SaransHK852”
+    }
+    
+  3. Ran into issues trying to connect via ssh (ssh pi@raspberrypi.local). It turns out that our Macs were unable to connect to the port that the RasPi was connected to. This was resolved by enabling internet sharing and remote sharing in network settings of our Macs
+  4. After successfully accessing the RasPi via ssh, the aim was to have the device automatically connect to the wifi. We attempted to use 'sudo raspi-config' to alter Network settings of the RasPi, however we encountered errors.
+  5. We removed the country code in the wpa_supplicant.conf file and we were able to connect to the wifi successfully!
